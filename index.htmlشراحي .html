@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المبرمج الافتراضي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04050a;--bg2:#080c18;--card:#0f1628;--a:#4f8ef7;--b:#7c3aed;--c:#06d6a0;--t:#e8ecf8;--t2:#8b9dc3;--bd:rgba(79,142,247,.2);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f6fc;--bg2:#e9eefb;--card:#fff;--t:#10162b;--t2:#4a5878;--bd:rgba(79,142,247,.3);color-scheme:light}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Cairo,sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--bg2);border-bottom:1px solid var(--bd);flex-wrap:wrap;gap:8px}
+.logo{font-weight:900;font-size:22px;background:linear-gradient(135deg,var(--a),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer}
+.links{display:flex;gap:4px;flex-wrap:wrap}
+button{font-family:inherit;cursor:pointer}
+.lk{background:none;border:0;color:var(--t2);padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px}
+.lk:hover{color:var(--a)}
+.btn{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border:0;padding:12px 26px;border-radius:12px;font-weight:700;font-size:15px}
+.btn2{background:none;color:var(--t);border:1.5px solid var(--bd);padding:12px 26px;border-radius:12px;font-weight:600;font-size:15px}
+.pg{display:none;padding:40px 20px;max-width:1100px;margin:0 auto}.pg.on{display:block}
+.hero{text-align:center;padding:50px 0}
+.hero h1{font-size:clamp(34px,7vw,64px);font-weight:900;line-height:1.15;margin-bottom:18px}
+.g{background:linear-gradient(135deg,var(--a),var(--b),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p,.sub{color:var(--t2);font-size:17px;line-height:1.8;margin-bottom:28px}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.stats{display:flex;gap:36px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.stats b{display:block;font-size:30px;font-weight:900;color:var(--a)}.stats span{font-size:13px;color:var(--t2)}
+h2.t{font-size:clamp(26px,4vw,38px);font-weight:900;text-align:center;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:28px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:26px;transition:.3s}
+.card:hover{transform:translateY(-5px);border-color:var(--a)}
+.card .i{font-size:34px;margin-bottom:12px}.card h3{margin-bottom:8px;font-size:18px}.card p{font-size:14px;color:var(--t2);line-height:1.7}
+.pop{border-color:var(--a);box-shadow:0 0 40px rgba(79,142,247,.2)}
+.pr{font-size:40px;font-weight:900;margin:8px 0}.pr small{font-size:15px;color:var(--t2);font-weight:400}
+ul{list-style:none;margin:14px 0 20px}li{padding:7px 0;font-size:14px;color:var(--t2);border-bottom:1px solid var(--bd)}li::before{content:'✓ ';color:var(--c);font-weight:700}
+.card.click{cursor:pointer;text-align:center}
+.ed{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+@media(max-width:760px){.ed{grid-template-columns:1fr}}
+textarea,input{width:100%;background:var(--bg2);color:var(--t);border:1.5px solid var(--bd);border-radius:12px;padding:14px;font-family:inherit;font-size:14px;outline:none}
+textarea{min-height:300px;resize:vertical;line-height:1.9}
+textarea:focus,input:focus{border-color:var(--a)}
+.pv{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;min-height:300px}
+.pv .bar{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--a),var(--b));margin-bottom:14px}
+.pv .blk{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:10px;font-size:13px;animation:f .4s}
+@keyframes f{from{opacity:0;transform:translateY(8px)}}
+.prog{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;margin:8px 0}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c),var(--a));transition:.5s}
+.auth{max-width:420px;margin:30px auto}.auth input{margin-bottom:14px}.auth .btn{width:100%}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:20px 0}
+.st .card{padding:18px}.st b{font-size:28px;font-weight:900}
+.tag{font-size:11px;padding:3px 10px;border-radius:12px;background:rgba(6,214,160,.15);color:var(--c);font-weight:700}
+.toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,100px);background:var(--card);border:1px solid var(--c);color:var(--c);padding:14px 24px;border-radius:12px;font-weight:700;transition:.4s;z-index:99;opacity:0}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.out{margin-top:20px;display:none}.out.on{display:block}.out img{width:100%;border-radius:14px;border:1px solid var(--bd);margin-bottom:12px}.out textarea{direction:ltr;text-align:left;font-family:monospace;font-size:12px;min-height:240px}
+footer{text-align:center;padding:30px;color:var(--t2);font-size:13px;border-top:1px solid var(--bd)}
+</style>
+</head>
+<body>
+<nav>
+ <div class="logo" onclick="go('home')">المبرمج الافتراضي</div>
+ <div class="links">
+  <button class="lk" onclick="go('home')">الرئيسية</button>
+  <button class="lk" onclick="go('pricing')">الأسعار</button>
+  <button class="lk" onclick="go('dash')">لوحة التحكم</button>
+  <button class="lk" onclick="go('login')">دخول</button>
+  <button class="btn" style="padding:8px 18px" onclick="go('paths')">ابدأ مجاناً</button>
+ </div>
+</nav>
+
+<div class="pg on" id="home">
+ <div class="hero">
+  <h1>صمم، بنِ، وأطلق<br><span class="g">مشاريعك الرقمية</span></h1>
+  <p>منصة ذكية لتعليم البرمجة وتطوير المشاريع باستعمال الذكاء الاصطناعي</p>
+  <div class="row"><button class="btn" onclick="go('paths')">🚀 ابدأ مشروعك الآن</button><button class="btn2" onclick="demo()">⚡ جرّب نموذجاً تجريبياً</button><button class="btn2" onclick="go('pricing')">عرض الأسعار</button></div>
+  <div class="stats"><div><b>+12K</b><span>مستخدم نشط</span></div><div><b>+3.4K</b><span>مشروع منشور</span></div><div><b>98%</b><span>رضا</span></div></div>
+ </div>
+ <h2 class="t">كل ما تحتاجه في مكان واحد</h2>
+ <div class="grid">
+  <div class="card"><div class="i">🧠</div><h3>محرر ذكي</h3><p>اكتب وصف مشروعك وتحوّله المنصة إلى نموذج تفاعلي</p></div>
+  <div class="card"><div class="i">⚡</div><h3>نشر فوري</h3><p>بضغطة واحدة يصير مشروعك على الإنترنت</p></div>
+  <div class="card"><div class="i">🌐</div><h3>4 أنواع تصميم</h3><p>ويب، جوال، سطح مكتب، تفاعلي</p></div>
+  <div class="card"><div class="i">📊</div><h3>لوحة تحكم</h3><p>تتبّع مشاريعك وإحصائياتك بسهولة</p></div>
+ </div>
+</div>
+
+<div class="pg" id="paths">
+ <h2 class="t">كيف تريد البناء؟</h2><p class="sub" style="text-align:center">اختر المسار المناسب لهدفك</p>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+  <div class="card click" onclick="go('types')"><div class="i">🧩</div><h3>النموذج الأولي</h3><p>سريع ومبسط — معاينة فورية ورابط مشاركة مؤقت</p><ul><li>محرر مبسط</li><li>معاينة فورية</li><li>مجاني للبدء</li></ul><button class="btn">ابدأ نموذجك ←</button></div>
+  <div class="card click" onclick="go('types')"><div class="i">🚀</div><h3>المنصة الفعلية</h3><p>شامل — نشر على السيرفر ودومين دائم</p><ul><li>بيئة تطوير متكاملة</li><li>نشر تلقائي</li><li>دعم فني</li></ul><button class="btn">ابنِ منصتك ←</button></div>
+ </div>
+</div>
+
+<div class="pg" id="types">
+ <h2 class="t">ما نوع مشروعك؟</h2>
+ <div class="grid">
+  <div class="card click" onclick="pick('🖥️ سطح المكتب')"><div class="i">🖥️</div><h3>سطح المكتب</h3><p>تطبيقات Windows وmacOS</p></div>
+  <div class="card click" onclick="pick('🌐 موقع ويب')"><div class="i">🌐</div><h3>موقع ويب</h3><p>مواقع ومتاجر ومدونات</p></div>
+  <div class="card click" onclick="pick('📱 تطبيق جوال')"><div class="i">📱</div><h3>تطبيق جوال</h3><p>آيفون وأندرويد</p></div>
+  <div class="card click" onclick="pick('🎮 تفاعلي / AR')"><div class="i">🎮</div><h3>تفاعلي / AR</h3><p>لوحات وواقع معزز</p></div>
+ </div>
+</div>
+
+<div class="pg" id="editor">
+ <h2 class="t">صف مشروعك</h2>
+ <p class="sub" style="text-align:center">النوع: <b id="ty" class="g">🌐 موقع ويب</b></p>
+ <div class="prog"><i id="pb"></i></div><small id="wc" style="color:var(--t2)">0 / 30 كلمة</small>
+ <div class="ed">
+  <textarea id="tx" oninput="upd()" placeholder="اكتب كل ميزة في سطر، مثال:
+صفحة رئيسية بصور المنتجات
+سلة تسوق ودفع آمن
+نظام تقييمات العملاء"></textarea>
+  <div class="pv" id="pv"><div class="bar"></div><p style="color:var(--t2);text-align:center;padding:50px 0">👁 ستظهر المعاينة هنا أثناء الكتابة</p></div>
+ </div>
+ <div class="row" style="margin-top:20px"><button class="btn2" onclick="document.getElementById('tx').value='';upd()">🗑️ مسح</button><button class="btn2" onclick="genImg()">🖼️ إخراج صورة</button><button class="btn2" onclick="genCode()">&lt;/&gt; إخراج الكود</button><button class="btn2" onclick="demo()">⚡ نموذج تجريبي</button><button class="btn" onclick="pub()">✓ موافقة والنشر</button></div>
+ <div class="out" id="out"></div>
+</div>
+
+<div class="pg" id="pricing">
+ <h2 class="t">خطط الأسعار</h2>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
+  <div class="card"><h3>مجاني</h3><div class="pr">0<small> $/شهر</small></div><ul><li>مشروع واحد</li><li>رابط مؤقت</li><li>معاينة فورية</li></ul><button class="btn2" style="width:100%" onclick="go('register')">ابدأ</button></div>
+  <div class="card pop"><span class="tag">الأكثر شعبية</span><h3>احترافي</h3><div class="pr">19<small> $/شهر</small></div><ul><li>10 مشاريع</li><li>نشر ودومين</li><li>200+ قالب</li></ul><button class="btn" style="width:100%" onclick="go('register')">اشترك</button></div>
+  <div class="card"><h3>مؤسسات</h3><div class="pr">79<small> $/شهر</small></div><ul><li>مشاريع غير محدودة</li><li>فريق عمل</li><li>دعم مخصص</li></ul><button class="btn2" style="width:100%" onclick="go('register')">تواصل</button></div>
+ </div>
+</div>
+
+<div class="pg" id="login"><div class="card auth"><h2 class="t">تسجيل الدخول</h2><br><input type="email" placeholder="البريد الإلكتروني" id="em"><input type="password" placeholder="كلمة المرور"><button class="btn" onclick="enter()">دخول</button><p class="sub" style="text-align:center;margin:16px 0 0;font-size:14px">ليس لديك حساب؟ <a href="#" style="color:var(--a)" onclick="go('register');return false">سجّل</a></p></div></div>
+<div class="pg" id="register"><div class="card auth"><h2 class="t">إنشاء حساب</h2><br><input placeholder="الاسم"><input type="email" placeholder="البريد الإلكتروني"><input type="password" placeholder="كلمة المرور"><button class="btn" onclick="enter()">ابدأ مجاناً</button></div></div>
+
+<div class="pg" id="dash">
+ <h2 class="t" style="text-align:right">لوحة التحكم</h2>
+ <div class="st"><div class="card"><small>المشاريع</small><br><b id="n1">2</b></div><div class="card"><small>الزيارات</small><br><b>1.2K</b></div><div class="card"><small>مكتمل</small><br><b>1</b></div></div>
+ <div class="grid" id="pj">
+  <div class="card"><span class="tag">منشور</span><h3 style="margin-top:10px">متجر حرف يدوية</h3><p>🌐 موقع ويب</p></div>
+  <div class="card"><span class="tag" style="background:rgba(245,197,66,.15);color:#f5c542">مسودة</span><h3 style="margin-top:10px">تطبيق حجز مواعيد</h3><p>📱 تطبيق جوال</p></div>
+ </div>
+</div>
+
+<footer>© 2026 المبرمج الافتراضي — نموذج أولي</footer>
+<div class="toast" id="ts"></div>
+<script>
+var cur='🌐 موقع ويب',cnt=2;
+function go(id){document.querySelectorAll('.pg').forEach(function(p){p.classList.toggle('on',p.id===id)});window.scrollTo(0,0)}
+function toast(m){var t=document.getElementById('ts');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},2600)}
+function pick(t){cur=t;document.getElementById('ty').textContent=t;go('editor')}
+function enter(){toast('أهلاً بك 👋');go('dash')}
+function upd(){
+ var v=document.getElementById('tx').value.trim();
+ var w=v?v.split(/\s+/).length:0;
+ document.getElementById('wc').textContent=w+' / 30 كلمة';
+ document.getElementById('pb').style.width=Math.min(100,w/30*100)+'%';
+ var pv=document.getElementById('pv');
+ var ls=v.split('\n').filter(function(x){return x.trim()});
+ if(!ls.length){pv.innerHTML='<div class="bar"></div><p style="color:var(--t2);text-align:center;padding:50px 0">👁 ستظهر المعاينة هنا أثناء الكتابة</p>';return}
+ pv.innerHTML='<div class="bar"></div><b>'+esc(cur)+'</b><br><br>'+ls.slice(0,8).map(function(l,i){return '<div class="blk">'+(i+1)+'. '+esc(l)+'</div>'}).join('');
+}
+function esc(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function lines(){var v=document.getElementById('tx').value.trim();return v?v.split('\n').filter(function(x){return x.trim()}):[]}
+function show(h){var o=document.getElementById('out');o.innerHTML=h;o.classList.add('on');o.scrollIntoView({behavior:'smooth'})}
+function genImg(){
+ var ls=lines();if(!ls.length){toast('اكتب وصف المشروع أولاً');return}
+ var c=document.createElement('canvas');c.width=800;c.height=Math.max(520,200+ls.slice(0,8).length*70);
+ var x=c.getContext('2d');
+ var g=x.createLinearGradient(0,0,800,c.height);g.addColorStop(0,'#080c18');g.addColorStop(1,'#141c35');x.fillStyle=g;x.fillRect(0,0,800,c.height);
+ var h=x.createLinearGradient(0,0,800,0);h.addColorStop(0,'#4f8ef7');h.addColorStop(1,'#7c3aed');x.fillStyle=h;x.fillRect(0,0,800,14);
+ x.direction='rtl';x.textAlign='right';
+ x.fillStyle='#e8ecf8';x.font='bold 34px Cairo,sans-serif';x.fillText('مشروعي — '+cur,760,80);
+ x.fillStyle='#8b9dc3';x.font='18px Cairo,sans-serif';x.fillText('محاكاة أولية • المبرمج الافتراضي',760,115);
+ ls.slice(0,8).forEach(function(l,i){var y=150+i*70;
+  x.fillStyle='#0f1628';x.beginPath();x.roundRect(40,y,720,56,14);x.fill();
+  x.strokeStyle='rgba(79,142,247,.4)';x.stroke();
+  x.fillStyle='#4f8ef7';x.font='bold 20px Cairo,sans-serif';x.fillText(String(i+1),738,y+35);
+  x.fillStyle='#e8ecf8';x.font='20px Cairo,sans-serif';x.fillText(l.slice(0,48),700,y+35)});
+ show('<img alt="محاكاة المشروع" src="'+c.toDataURL('image/png')+'"><small style="color:var(--t2)">اضغط مطولاً على الصورة لحفظها</small>');
+}
+function genCode(){
+ var ls=lines();if(!ls.length){toast('اكتب وصف المشروع أولاً');return}
+ var t=cur.replace(/[^\u0600-\u06FFa-zA-Z0-9 \/]/g,'').trim();
+ var code='<!DOCTYPE html>\n<html lang="ar" dir="rtl">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>'+esc(t)+'</title>\n<style>\nbody{font-family:Cairo,sans-serif;background:#080c18;color:#e8ecf8;margin:0;padding:24px}\nh1{background:linear-gradient(135deg,#4f8ef7,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}\n.card{background:#0f1628;border:1px solid #2a3a66;border-radius:14px;padding:18px;margin:12px 0}\n</style>\n</head>\n<body>\n<h1>'+esc(t)+'</h1>\n'+ls.map(function(l){return '<div class="card">'+esc(l)+'</div>'}).join('\n')+'\n</body>\n</html>';
+ show('<textarea id="cd" readonly></textarea><div class="row" style="margin-top:12px"><button class="btn" onclick="cp()">📋 نسخ الكود</button></div>');
+ document.getElementById('cd').value=code;
+}
+function cp(){var e=document.getElementById('cd');e.select();try{document.execCommand('copy');toast('تم النسخ ✓')}catch(x){toast('حدد الكود وانسخه يدوياً')}}
+function genImg(){
+ var ls=lines();if(!ls.length){toast('اكتب وصف المشروع أولاً');return}
+ var hu=0;ls.join('').split('').forEach(function(ch){hu=(hu+ch.charCodeAt(0))%360});
+ var A='hsl('+hu+',80%,58%)',B='hsl('+((hu+50)%360)+',75%,52%)';
+ var m=cur.indexOf('جوال')>-1?'m':cur.indexOf('سطح')>-1?'d':cur.indexOf('تفاعلي')>-1?'i':'w';
+ var c=document.createElement('canvas');c.width=800;c.height=m==='m'?680:520;
+ var x=c.getContext('2d');x.direction='rtl';x.textAlign='right';
+ function rr(a,b,w,h,r,f,s){x.beginPath();x.roundRect(a,b,w,h,r);x.fillStyle=f;x.fill();if(s){x.strokeStyle=s;x.stroke()}}
+ function tx(s,a,b,z,col,wt){x.font=(wt||'')+' '+z+'px Cairo,sans-serif';x.fillStyle=col;x.fillText(s,a,b)}
+ function gr(x0,x1){var g=x.createLinearGradient(x0,0,x1,0);g.addColorStop(0,A);g.addColorStop(1,B);return g}
+ rr(0,0,800,c.height,0,'#0b1020');
+ var T=ls[0].slice(0,32),it=(ls.length>1?ls.slice(1):ls).slice(0,6);
+ if(m==='m'){
+  rr(250,20,300,640,36,'#1a2140');rr(260,34,280,612,28,'#f4f6fc');
+  rr(260,34,280,130,28,gr(260,540));tx(T,520,100,20,'#fff','bold');tx(cur,520,130,13,'rgba(255,255,255,.8)');
+  it.slice(0,5).forEach(function(l,i){var y=182+i*78;rr(276,y,248,64,14,'#fff','#dfe5f5');x.beginPath();x.arc(500,y+32,16,0,7);x.fillStyle=gr(484,516);x.fill();tx(l.slice(0,20),474,y+38,14,'#10162b','600')});
+  rr(260,596,280,50,0,'#fff');for(var k=0;k<4;k++){x.beginPath();x.arc(290+k*73,621,9,0,7);x.fillStyle=k?'#c5cde4':A;x.fill()}
+ }else if(m==='i'){
+  rr(30,30,740,460,18,'#111936','#2a3a66');tx(T,740,80,28,'#fff','bold');tx('لوحة تفاعلية',740,110,14,'#8b9dc3');
+  it.slice(0,4).forEach(function(l,i){var a=540-i*175;rr(a,135,160,90,14,'#0f1628','#2a3a66');tx(String((i+2)*137%900+100),a+140,185,28,A,'bold');tx(l.slice(0,14),a+140,212,12,'#8b9dc3')});
+  for(var j=0;j<10;j++){var hh=40+(j*53%130);rr(70+j*58,470-hh,40,hh,6,gr(0,800))}
+ }else{
+  rr(30,24,740,472,16,'#f4f6fc');rr(30,24,740,40,16,'#dfe5f5');
+  ['#ff5f56','#ffbd2e','#27c93f'].forEach(function(col,i){x.beginPath();x.arc(52+i*20,44,6,0,7);x.fillStyle=col;x.fill()});
+  if(m==='w')rr(200,32,400,24,12,'#fff');
+  if(m==='d'){rr(560,64,210,432,0,'#10162b');it.slice(0,6).forEach(function(l,i){tx(l.slice(0,16),750,110+i*44,14,i?'#8b9dc3':'#fff')})}
+  var R=m==='d'?540:770;
+  rr(46,80,R-46-(m==='d'?10:16),m==='d'?40:44,10,'#fff');tx(T.slice(0,20),R-16-(m==='d'?10:0),108,16,'#10162b','bold');
+  rr(46,134,R-46-(m==='d'?10:16),150,16,gr(46,R));tx(T,R-30-(m==='d'?10:0),200,28,'#fff','bold');tx(cur,R-30-(m==='d'?10:0),232,14,'rgba(255,255,255,.85)');
+  var n=m==='d'?2:3,w=(R-46-(m==='d'?10:16)-(n-1)*14)/n;
+  it.slice(0,n*2).forEach(function(l,i){var col=i%n,row=Math.floor(i/n),a=R-(m==='d'?10:16)-(col+1)*w-col*14,y=304+row*98;rr(a,y,w,84,12,'#fff','#dfe5f5');x.beginPath();x.arc(a+w-26,y+26,12,0,7);x.fillStyle=A;x.fill();tx(l.slice(0,18),a+w-46,y+31,14,'#10162b','600')});
+ }
+ show('<img alt="نموذج المشروع" src="'+c.toDataURL('image/png')+'"><small style="color:var(--t2)">نموذج أولي لمشروعك — اضغط مطولاً على الصورة لحفظها</small>');
+}
+function demo(){
+ var S={'موقع':'متجر حرف يدوية\nصفحة رئيسية بصور المنتجات\nكتالوج مع فلاتر البحث\nسلة تسوق ودفع آمن\nنظام تقييمات العملاء\nصفحة عن الورشة وقصتها\nتواصل عبر واتساب',
+ 'جوال':'تطبيق حجز مواعيد العيادة\nتسجيل دخول المريض\nاختيار الطبيب والتخصص\nحجز موعد وتذكير\nسجل الزيارات\nالدفع الإلكتروني',
+ 'سطح':'برنامج إدارة المخزون\nلوحة المنتجات\nالمبيعات اليومية\nالفواتير والطباعة\nتقارير شهرية\nالموردون والزبائن',
+ 'تفاعلي':'لوحة متابعة المبيعات\nإجمالي المبيعات\nعدد الطلبات\nالزبائن الجدد\nنسبة النمو'};
+ var k=cur.indexOf('جوال')>-1?'جوال':cur.indexOf('سطح')>-1?'سطح':cur.indexOf('تفاعلي')>-1?'تفاعلي':'موقع';
+ go('editor');document.getElementById('ty').textContent=cur;
+ document.getElementById('tx').value=S[k];upd();genImg();toast('هذا نموذج تجريبي — عدّل الوصف كما تشاء');
+}
+function pub(){
+ var v=document.getElementById('tx').value.trim();
+ if(!v){toast('اكتب وصف المشروع أولاً');return}
+ cnt++;document.getElementById('n1').textContent=cnt;
+ var d=document.createElement('div');d.className='card';
+ d.innerHTML='<span class="tag">قيد المراجعة</span><h3 style="margin-top:10px">'+esc(v.split('\n')[0].slice(0,32))+'</h3><p>'+esc(cur)+'</p>';
+ document.getElementById('pj').prepend(d);
+ document.getElementById('tx').value='';upd();toast('تم إرسال مشروعك ✓');go('dash');
+}
+</script>
+</body>
+</html>
